@@ -1,32 +1,39 @@
-﻿//using mongodb.bson.serialization.attributes;
-//using mongodb.bson;
-//using system;
-//using system.collections.generic;
-//using system.linq;
-//using system.text;
-//using system.threading.tasks;
-//using newtonsoft.json;
+﻿using MongoDB.Bson.Serialization.Attributes;
+using MongoDB.Bson;
+using Newtonsoft.Json;
+using ClickUp.Models;
 
-//namespace clickup.models
-//{
-//    public class Foldermodel
-//    {
-//        [bsonid]
-//        [bsonrepresentation(bsontype.objectid)]
-//        [jsonproperty("id")]
-//        public string id { get; set; } = null!;
+namespace ClickUp.Moldels
+{
+    public class FolderModel
+    {
+        //[BsonId]
+        //[BsonRepresentation(BsonType.ObjectId)]
+        [JsonProperty("id")]
+        public string id { get; set; } = null!;
 
-//        [jsonproperty("name")]
-//        public string name { get; set; } = null!;
+        [JsonProperty("name")]
+        public string name { get; set; } = null!;
 
-//        [jsonproperty("orderindex")]
-//        public long orderindex { get; set; }
+        [JsonProperty("orderindex")]
+        public long orderindex { get; set; }
 
-//        [jsonproperty("override_statuses")]
-//        public bool overridestatuses { get; set; }
+        [JsonProperty("override_statuses")]
+        public bool overridestatuses { get; set; }
 
-//        [jsonproperty("hidden")]
-//        public bool hidden { get; set; }
+        [JsonProperty("hidden")]
+        public bool hidden { get; set; }
 
-//    }
-//}
+        public SpaceModel space { get; set; }
+
+        public string task_count { get; set; }
+
+        public bool archived { get; set; }
+
+        public List<StatusModel> statuses { get; set; } = new();
+
+        public string permission_level { get; set; }
+
+
+    }
+}

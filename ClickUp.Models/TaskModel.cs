@@ -5,17 +5,20 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Newtonsoft.Json;
 
 namespace ClickUp.Models
 {
     public class TaskModel
     {
-        [BsonId]
-        [BsonRepresentation(BsonType.ObjectId)]
-        public string? id { get; set; }
-        public string name { get; set; } = null!;
-        public string? description { get; set; }
-        public short user { get; set; }
+        public string id;
 
+      
+        public object[] tasks { get; set; }
+
+ 
+        public bool lastPage { get; set; }
     }
+
 }
+

@@ -6,9 +6,10 @@ using ClickUp.Models;
 namespace ClickUp.API.Controllers
 {
     [Route("api/[controller]")]
-    [ApiController] public class SpaceController : ControllerBase
+    [ApiController] 
+    public class SpaceController : ControllerBase
     {
-        public readonly SpacesService _service;
+        private readonly SpacesService _service;
 
         public SpaceController(SpacesService service)
         {
@@ -28,8 +29,6 @@ namespace ClickUp.API.Controllers
         [Route("integration")]
         public async Task<IActionResult> SpaceIntegration()
         {
-
-
             var response = await _service.SpaceIntegration();
             return Ok(response);
         }
