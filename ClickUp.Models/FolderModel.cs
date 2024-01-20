@@ -2,6 +2,7 @@
 using MongoDB.Bson;
 using Newtonsoft.Json;
 using ClickUp.Models;
+using ClickUp.Models.DTO;
 
 namespace ClickUp.Moldels
 {
@@ -19,12 +20,12 @@ namespace ClickUp.Moldels
         public long orderindex { get; set; }
 
         [JsonProperty("override_statuses")]
-        public bool overridestatuses { get; set; }
+        public bool override_statuses { get; set; }
 
         [JsonProperty("hidden")]
         public bool hidden { get; set; }
 
-        public SpaceModel space { get; set; }
+        public SpaceDto space { get; set; }
 
         public string task_count { get; set; }
 
@@ -33,6 +34,11 @@ namespace ClickUp.Moldels
         public List<StatusModel> statuses { get; set; } = new();
 
         public string permission_level { get; set; }
+
+        public List<ListModel> lists { get; set; } = new();
+
+
+        
 
 
     }

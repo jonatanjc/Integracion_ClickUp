@@ -11,7 +11,7 @@ namespace ClickUp.Models
     {
         public List<SpaceModel> spaces { get; set; }
         public List<FolderModel> folders { get; set; }
-        public List<TaskModel> tasks { get; set; }
+        public TaskModel task { get; set; }
         public List<ListModel> lists { get; set; }
     }
 }

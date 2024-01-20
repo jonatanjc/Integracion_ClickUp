@@ -15,7 +15,7 @@ namespace ClickUp.Repositories
             _mongoContext = mongoContext;
         }
 
-        public List<TaskModel> SaveList(List<TaskModel> list)
+        public List<TaskModel> SaveMany(List<TaskModel> list)
         {
             _mongoContext.TaskCollection.InsertMany(list);
             return list;
@@ -24,6 +24,16 @@ namespace ClickUp.Repositories
         public TaskModel GetById(string id)
         {
             return _mongoContext.TaskCollection.Find(x => x.id == id).FirstOrDefault();
+        }
+        public TaskModel Regist(TaskModel model)
+        {
+            _mongoContext.TaskCollection.InsertOne(model);
+            return model;
+        }
+
+        public List<TaskModel> InsertOne(TaskModel task)
+        {
+            throw new NotImplementedException();
         }
     }
 }

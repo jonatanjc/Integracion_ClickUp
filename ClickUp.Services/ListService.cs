@@ -41,6 +41,18 @@ namespace ClickUp.Services
                         if (integrationResponse == null) return new List<ListModel>();
                         if (integrationResponse.lists == null) return new List<ListModel>();
 
+
+                        //var count = integrationResponse.lists.Count();
+                        //if (count > 0)
+                        //{
+                        //    var model = integrationResponse.lists[0];
+                        //    model.name = "prueba";
+                        //    model.content = "prueba2";
+                        //    model.folder = null;
+                        //    integrationResponse.lists[0] = model;
+
+                        //}
+
                         List<string> listIds = integrationResponse.lists.Select(x => x.id).ToList();
                         var recordsSaved = repository.GetAllByIds(listIds);
                         if (recordsSaved.Count == 0)

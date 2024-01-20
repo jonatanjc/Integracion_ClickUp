@@ -46,6 +46,11 @@ namespace ClickUp.Repositories
             result.task_count = list.task_count;
             result.due_date = list.due_date;
             result.start_date = list.start_date;
+            result.folder = list.folder;
+            result.space= list.space;
+            result.archived = list.archived;
+            result.override_statuses = list.override_statuses;
+            result.permission_level = list.permission_level;
 
             _mongoContext.ListCollection.ReplaceOne(filter, result);
         }

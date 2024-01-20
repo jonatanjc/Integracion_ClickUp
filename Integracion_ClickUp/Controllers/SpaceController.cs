@@ -32,14 +32,6 @@ namespace ClickUp.API.Controllers
             var response = await _service.SpaceIntegration();
             return Ok(response);
         }
-
-        [HttpGet]
-        [Route("get-by-id/{id}")]
-
-        public IActionResult GetById(string id)
-        {
-            return Ok(_service.FindById(id));
-        }
     }
 }
 

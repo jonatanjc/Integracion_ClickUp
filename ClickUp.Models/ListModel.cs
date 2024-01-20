@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 using ClickUp.Moldels;
+using ClickUp.Models.DTO;
 
 namespace ClickUp.Models
 {
@@ -20,24 +21,20 @@ namespace ClickUp.Models
 
         public string content { get; set; }
 
-        public object status { get; set; }
+        public StatusDTO? status { get; set; }
 
         public object priority { get; set; }
 
-        [JsonProperty("assignee")]
         public object assignee { get; set; }
 
-        [JsonProperty("task_count")]
         public long task_count { get; set; }
 
-        [JsonProperty("due_date")]
         public string due_date { get; set; }
 
-        [JsonProperty("start_date")]
         public string start_date { get; set; }
-        public FolderModel folder { get; set; }
+        public FolderDto folder { get; set; }
 
-        public SpaceModel space { get; set; }
+        public SpaceDto space { get; set; }
 
         public bool archived { get; set; }
 

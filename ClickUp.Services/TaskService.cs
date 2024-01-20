@@ -37,10 +37,11 @@ namespace ClickUp.Services
                     {
                         var responseString = await response.Content.ReadAsStringAsync();
                         if (string.IsNullOrEmpty(responseString)) return new();
-                        IntegrationResponse integrationResponse = JsonSerializer.Deserialize<IntegrationResponse>(responseString);
-                        if (integrationResponse == null) return new();
-                        if (integrationResponse.tasks == null) return new();
-                        return repository.SaveList(integrationResponse.tasks);
+                        TaskModel tarea = JsonSerializer.Deserialize<TaskModel>(responseString);
+                        //if (integrationResponse == null) return new();
+                        //if (integrationResponse.task == null) return new();
+                        if (tarea == null) return new();
+                        return repository.InsertOne(tarea);
                     }
                     else
                     {

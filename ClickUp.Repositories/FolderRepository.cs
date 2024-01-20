@@ -15,7 +15,7 @@ namespace ClickUp.Repositories
             _mongoContext = mongoContext;
         }
 
-        public List<FolderModel> SaveList(List<FolderModel> list)
+        public List<FolderModel> SaveMany(List<FolderModel> list)
         {
             _mongoContext.FoldersCollection.InsertMany(list);
             return list;
@@ -32,7 +32,7 @@ namespace ClickUp.Repositories
             return _mongoContext.FoldersCollection.Find(X => listIds.Contains(X.id)).ToList();
         }
 
-        public void Added(FolderModel folder)
+        public void Add(FolderModel folder)
         {
             _mongoContext.FoldersCollection.InsertOne(folder);
         }
@@ -43,6 +43,13 @@ namespace ClickUp.Repositories
             var result = _mongoContext.FoldersCollection.Find(filter).FirstOrDefault();
             result.space = folder.space;
             result.statuses = folder.statuses;
+            result.name = folder.name;
+            result.orderindex= folder.orderindex;   
+            result.override_statuses = folder.override_statuses;  
+            result.hidden = folder.hidden;
+            result.task_count = folder.task_count;  
+            result.archived= folder.archived;
+            result.lists= folder.lists;
             _mongoContext.FoldersCollection.ReplaceOne(filter, result);
         }
     }
