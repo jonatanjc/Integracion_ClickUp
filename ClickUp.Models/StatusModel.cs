@@ -3,7 +3,7 @@ namespace ClickUp.Models
 {
     public class StatusModel
     {
-        public string id { get; set; } = null!;
+        private string id { get; set; } = null!;
 
         public string? status { get; set; }
 
@@ -12,5 +12,21 @@ namespace ClickUp.Models
         public long orderindex { get; set; }
 
         public string? color { get; set; }
+
+        public void Test()
+        {
+            id = "0001101010";
+        }
+
+        public void SetColor(string color)
+        {
+            this.color = color;
+        }
+
+        public void GetId()
+        {
+            return id;
+        }
     }
+
 }

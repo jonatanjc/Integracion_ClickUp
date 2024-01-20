@@ -20,6 +20,10 @@ namespace ClickUp.Services
 
         public async Task<List<TaskModel>> TaskIntegration()
         {
+            StatusModel status = new StatusModel();
+            status.color = "blue";
+            status.Test();
+            status.SetColor("red");
             try
             {
                 var apiUrl = "https://api.clickup.com/api/v2/list/901101974608/task";
@@ -37,11 +41,11 @@ namespace ClickUp.Services
                     {
                         var responseString = await response.Content.ReadAsStringAsync();
                         if (string.IsNullOrEmpty(responseString)) return new();
-                        TaskModel tarea = JsonSerializer.Deserialize<TaskModel>(responseString);
-                        //if (integrationResponse == null) return new();
-                        //if (integrationResponse.task == null) return new();
-                        if (tarea == null) return new();
-                        return repository.InsertOne(tarea);
+                        ResponseTask taskresponse = JsonSerializer.Deserialize<ResponseTask>(responseString);
+                        if (taskresponse == null) return new();
+                        if (taskresponse.tasks == null) return new();
+                        if (taskresponse.tasks.Count() ) return new();
+                        return repository.InsertOne(tarea); 
                     }
                     else
                     {
