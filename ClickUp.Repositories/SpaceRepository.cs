@@ -32,5 +32,10 @@ namespace ClickUp.Repositories
             filter &= builder.Eq(x => x.admin_can_manage, value);
             return _mongoContext.SpaceCollection.Find(filter).ToList();
         }
+
+        public object GetById(List<string> spaceIds)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

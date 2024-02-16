@@ -4,10 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ClickUp.Models
+namespace ClickUp.Tasks
 {
-    public class FolderResponse
+    public class SpacesTask
     {
-        public List<SpaceModel> spaces { get; set; }
     }
 }

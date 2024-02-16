@@ -37,7 +37,7 @@ builder.Services.AddScoped<TaskRepository>();
 builder.Services.AddScoped<FolderService>();
 builder.Services.AddScoped<SpacesService>();
 builder.Services.AddScoped<TaskService>();
-builder.Services.AddScoped<ListRepository>();
+builder.Services.AddScoped<ListService>();
 
 
 var app = builder.Build();

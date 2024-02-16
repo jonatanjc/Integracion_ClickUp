@@ -1,41 +1,56 @@
-﻿//using ClickUp.Repositories.DbContext;
-//using System;
-//using System.Collections.Generic;
-//using System.Linq;
-//using System.Text;
-//using System.Threading.Tasks;
-//using MongoDB.Driver;
-//using ClickUp.Models;
+﻿using ClickUp.Repositories.DbContext;
+using MongoDB.Driver;
+using ClickUp.Models;
+using ClickUp.Moldels;
+using System.Xml.Linq;
 
-//namespace ClickUp.Repositories
-//{
-//    public class FolderRepository
-//    {
-//        private readonly MongoDbContext _mongoContext;
+namespace ClickUp.Repositories
+{
+    public class FolderRepository
+    {
+        private readonly MongoDbContext _mongoContext;
 
-//        public SpaceRepository(MongoDbContext mongoContext)
-//        {
-//            _mongoContext = mongoContext;
-//        }
+        public FolderRepository(MongoDbContext mongoContext)
+        {
+            _mongoContext = mongoContext;
+        }
 
-//        public List<SpaceModel> SaveList(List<SpaceModel> list)
-//        {
-//            _mongoContext.SpaceCollection.InsertMany(list);
-//            return list;
-//        }
+        public List<FolderModel> SaveMany(List<FolderModel> list)
+        {
+            _mongoContext.FoldersCollection.InsertMany(list);
+            return list;
+        }
 
-//        public SpaceModel GetById(string id)
-//        {
-//            return _mongoContext.SpaceCollection.Find(x => x.id == id).FirstOrDefault();
-//        }
+        public FolderModel GetById(string id)
+        {
+            return _mongoContext.FoldersCollection.Find(x => x.id == id).FirstOrDefault();
+        }
 
-//        public List<SpaceModel> GetByCanManage(bool value)
-//        {
-//            var builder = Builders<SpaceModel>.Filter;
-//            var filter = builder.Empty;
 
-//            filter &= builder.Eq(x => x.admin_can_manage, value);
-//            return _mongoContext.SpaceCollection.Find(filter).ToList();
-//        }
-//    }
-//}
+        public List<FolderModel> GetAllByIds(List<string> listIds)
+        {
+            return _mongoContext.FoldersCollection.Find(X => listIds.Contains(X.id)).ToList();
+        }
+
+        public void Add(FolderModel folder)
+        {
+            _mongoContext.FoldersCollection.InsertOne(folder);
+        }
+
+        public void Update(FolderModel folder)
+        {
+            var filter = Builders<FolderModel>.Filter.Eq(x => x.id, folder.id);
+            var result = _mongoContext.FoldersCollection.Find(filter).FirstOrDefault();
+            result.space = folder.space;
+            result.statuses = folder.statuses;
+            result.name = folder.name;
+            result.orderindex= folder.orderindex;   
+            result.override_statuses = folder.override_statuses;  
+            result.hidden = folder.hidden;
+            result.task_count = folder.task_count;  
+            result.archived= folder.archived;
+            result.lists= folder.lists;
+            _mongoContext.FoldersCollection.ReplaceOne(filter, result);
+        }
+    }
+}

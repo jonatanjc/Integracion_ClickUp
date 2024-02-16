@@ -36,8 +36,9 @@ namespace ClickUp.Services
                     {
                         var responseString = await response.Content.ReadAsStringAsync();
                         if (string.IsNullOrEmpty(responseString)) return new();
-                        FolderResponse responseSpace = JsonSerializer.Deserialize<FolderResponse>(responseString);
+                        IntegrationResponse responseSpace = JsonSerializer.Deserialize<IntegrationResponse>(responseString);
                         if (responseSpace == null) return new();
+                        if (responseSpace.spaces== null) return new();
                         return repository.SaveList(responseSpace.spaces);
                     }
                     else
