@@ -23,7 +23,7 @@ namespace ClickUp.Models
             this.color = color;
         }
 
-        public void GetId()
+        public string GetId()
         {
             return id;
         }

@@ -18,15 +18,16 @@ namespace ClickUp.Services
             this.repository = repository;
         }
 
-        public async Task<List<TaskModel>> TaskIntegration()
+        public async Task<List<TaskModel>> TaskIntegration(string listId)
         {
             StatusModel status = new StatusModel();
             status.color = "blue";
             status.Test();
             status.SetColor("red");
+            var statusId = status.GetId();
             try
             {
-                var apiUrl = "https://api.clickup.com/api/v2/list/901101974608/task";
+                var apiUrl = $"https://api.clickup.com/api/v2/list/{listId}/task";
                 var apiToken = "pk_61752028_6C4BCUHMZKA8HLRJWSMEIH2Q1VYWWVGA";
 
                 using (var client = new HttpClient())
@@ -44,8 +45,7 @@ namespace ClickUp.Services
                         ResponseTask taskresponse = JsonSerializer.Deserialize<ResponseTask>(responseString);
                         if (taskresponse == null) return new();
                         if (taskresponse.tasks == null) return new();
-                        if (taskresponse.tasks.Count() ) return new();
-                        return repository.InsertOne(tarea); 
+                        if (taskresponse.tasks.Count() == 0) return new();
                     }
                     else
                     {

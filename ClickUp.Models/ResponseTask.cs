@@ -6,7 +6,10 @@ using System.Threading.Tasks;
 
 namespace ClickUp.Models
 {
-    internal class ResponseTask
+    public class ResponseTask
     {
+        public List<TaskModel> tasks { get; set; } = new List<TaskModel>();
+
+        public bool last_page { get; set; }
     }
 }

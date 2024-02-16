@@ -19,11 +19,11 @@ namespace ClickUp.Services
             this.repository = repository;
         }
 
-        public async Task<List<ListModel>> ListIntegration()
+        public async Task<List<ListModel>> ListIntegration(string folderId)
         {
             try
             {
-                var apiUrl = "https://api.clickup.com/api/v2/folder/90110975659/list";
+                var apiUrl = $"https://api.clickup.com/api/v2/folder/{folderId}/list";
                 var apiToken = "pk_61752028_6C4BCUHMZKA8HLRJWSMEIH2Q1VYWWVGA";
 
                 using (var client = new HttpClient())

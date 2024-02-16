@@ -25,10 +25,10 @@ namespace clickup.api.controllers
 
         [HttpGet]
         [Route("integration")]
-        public async Task<IActionResult> TaskIntegration()
+        public async Task<IActionResult> TaskIntegration(string list)
         {
 
-            var response = await _service.TaskIntegration();
+            var response = await _service.TaskIntegration(list);
             return Ok(response);
         }
     }

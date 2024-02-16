@@ -26,10 +26,10 @@ namespace clickup.api.controllers
 
         [HttpGet]
         [Route ("integration")]
-        public async Task<IActionResult> FolderIntegration()
+        public async Task<IActionResult> FolderIntegration(string space)
         {
 
-            var response = await _service.FolderIntegration();
+            var response = await _service.FolderIntegration(space);
             return Ok(response);
         }
      }
